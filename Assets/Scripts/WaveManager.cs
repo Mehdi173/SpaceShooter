@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class WaveManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class WaveManager : MonoBehaviour
 
     private int currentWaveIndex;
     private int enemyCount;
+    private int enemiesAliveCount;
     private EnemyData currentEnemyData;
 
     private void Start()
@@ -32,8 +34,39 @@ public class WaveManager : MonoBehaviour
                 currentEnemyData = largeUnitData;
             }
             GameObject enemyObject = Instantiate(currentEnemyData.enemyPrefab, spawnPositions[i].position, spawnPositions[i].rotation);
-            enemyObject.GetComponent<EnemyBehaviour>()?.setEnemyData(currentEnemyData);
+            enemyObject.GetComponent<EnemyBehaviour>()?.setEnemyData(currentEnemyData, GetDifficultyMultiplier());
+            // removing the listener that was attached to the object in the previous wave
+            enemyObject.GetComponent<HealthBehaviour>()?.onDeath.RemoveListener(OnEnemyDeath);
+            enemyObject.GetComponent<HealthBehaviour>()?.onDeath.AddListener(OnEnemyDeath);
         }
+        enemiesAliveCount = enemyCount;
+    }
+
+    // Calculates the difficulty multiplier that gets applied after wave 6 to ensure the waves become more difficult
+    private float GetDifficultyMultiplier()
+    {
+        return 1f + Mathf.Max(0, currentWaveIndex - 6) * 0.1f;
+    }
+
+    private void OnEnemyDeath()
+    {
+        enemiesAliveCount--;
+        if (enemiesAliveCount <= 0)
+        {
+            // SpawnWave();
+            StartCoroutine(DelayedNextWaveSpawn());
+        }
+    }
+
+    private IEnumerator DelayedNextWaveSpawn()
+    {
+        Debug.Log("Wave finished");
+        // maybe I trigger UI stuff here?? like "Next Wave Incoming ..." or something like that?
+        
+        yield return new WaitForSeconds(3f);
+        
+        currentWaveIndex++;
+        SpawnWave();
     }
         // [SerializeField] private EnemyData[] waveData;
         // [SerializeField] private Transform[] spawnPoints;

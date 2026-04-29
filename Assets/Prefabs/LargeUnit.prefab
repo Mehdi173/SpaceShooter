@@ -204,7 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviour
   gun: {fileID: 8808274855789176624}
   bulletPrefab: {fileID: 3396529147031542288, guid: a4b3879be07794a15bd0b887d6f72ac0, type: 3}
-  delayTime: 0
+  healthBehaviour: {fileID: 0}
+  enemyData: {fileID: 0}
 --- !u!114 &7443147846032950889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,16 +221,4 @@ MonoBehaviour:
   maxHealth: 0
   onDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500156500974687987}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []

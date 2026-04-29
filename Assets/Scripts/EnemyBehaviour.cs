@@ -11,6 +11,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private EnemyData enemyData;
     // [SerializeField] private float delayTime;
     
+    private float difficultyMultiplier;
     private float nextShotTime;
 
     private void Awake()
@@ -18,10 +19,12 @@ public class EnemyBehaviour : MonoBehaviour
         healthBehaviour = GetComponent<HealthBehaviour>();
     }
 
-    public void setEnemyData(EnemyData enemyData)
+    public void setEnemyData(EnemyData enemyData, float difficultyMultiplier)
     {
         this.enemyData = enemyData;
+        this.difficultyMultiplier = difficultyMultiplier;
         healthBehaviour.InitialiseHealth(this.enemyData.maxHealth);
+        nextShotTime = 0f;
     }
     
     private void Update()
@@ -29,7 +32,8 @@ public class EnemyBehaviour : MonoBehaviour
         if (enemyData != null && Time.time > nextShotTime)
         {
             Instantiate(bulletPrefab, gun.position, gun.rotation);
-            nextShotTime = Time.time + enemyData.firingDelayTime;
+            // increasing the enemies fire rate after wave 6 to make the waves more difficult
+            nextShotTime = Time.time + enemyData.firingDelayTime / difficultyMultiplier;
         }
         // transform.Translate(Vector3.up * speed * Time.deltaTime);
     

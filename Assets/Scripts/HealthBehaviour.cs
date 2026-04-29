@@ -7,12 +7,16 @@ public class HealthBehaviour : MonoBehaviour
     private int currentHealth;
 
     public UnityEvent onDeath;
-    // public UnityEvent<int> OnHealthChange; //public so that other objects can subscribe to it, also int or String?
+    // public UnityEvent<int> OnHealthChange; //public so that other objects can subscribe to it, also int or String?, needed for health bars but do I have enough time to do that??
 
-    // private void Start()
-    // {
-    //     InitialiseHealth();
-    // }
+    // workaround to set player health, ultimately need to make the method call from some player-related script
+    private void Start()
+    {
+        if (currentHealth == 0)
+        {
+            InitialiseHealth(maxHealth);
+        }
+    }
 
     public void InitialiseHealth(int maxHealth)
     {
@@ -38,5 +42,6 @@ public class HealthBehaviour : MonoBehaviour
         // for player maybe I will pause and show gameover UI?
         Debug.Log("I'm dead!");
         onDeath?.Invoke();
+        gameObject.SetActive(false);
     }
 }
