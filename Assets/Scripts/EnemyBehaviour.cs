@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(HealthBehaviour))]
 public class EnemyBehaviour : MonoBehaviour
 {
 
@@ -11,6 +12,11 @@ public class EnemyBehaviour : MonoBehaviour
     // [SerializeField] private float delayTime;
     
     private float nextShotTime;
+
+    private void Awake()
+    {
+        healthBehaviour = GetComponent<HealthBehaviour>();
+    }
 
     public void setEnemyData(EnemyData enemyData)
     {
