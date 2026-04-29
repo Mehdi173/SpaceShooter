@@ -6,6 +6,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private EnemyData smallUnitData;
     [SerializeField] private EnemyData largeUnitData;
     [SerializeField] private Transform[] spawnPositions;
+    [SerializeField] private PowerUpSpawner powerUpSpawner;
 
     private int currentWaveIndex;
     private int enemyCount;
@@ -40,6 +41,7 @@ public class WaveManager : MonoBehaviour
             enemyObject.GetComponent<HealthBehaviour>()?.onDeath.AddListener(OnEnemyDeath);
         }
         enemiesAliveCount = enemyCount;
+        powerUpSpawner.SpawnPowerUp();
     }
 
     // Calculates the difficulty multiplier that gets applied after wave 6 to ensure the waves become more difficult

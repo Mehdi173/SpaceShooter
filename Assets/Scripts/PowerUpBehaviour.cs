@@ -1,33 +1,44 @@
-using System.Collections;
 using UnityEngine;
 
-public class PlayerPowerUp : MonoBehaviour
+// [RequireComponent(typeof(PlayerPowerUpController))]
+public class PowerUpBehaviour : MonoBehaviour
 {
-    public float speed = 5f;
-    // Guard added to prevent stacking of the boost
-    private bool isBoosting = false;
+    [SerializeField] private PowerUpData powerUpData;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("PowerUp") && !isBoosting)
+        PlayerPowerUpController playerPowerUpController = collision.GetComponent<PlayerPowerUpController>();
+        if (playerPowerUpController != null)
         {
-            StartCoroutine(SpeedBoost());
-            Destroy(other.gameObject);
+            playerPowerUpController.ApplyPowerUp(powerUpData);
+            gameObject.SetActive(false); //will prob do pooling later on
         }
     }
+    // public float speed = 5f;
+    // // Guard added to prevent stacking of the boost
+    // private bool isBoosting = false;
 
-    IEnumerator SpeedBoost()
-    {
-        isBoosting = true;
-        speed *= 2;
-        Debug.Log("Speed Boost Activated: " + speed);
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("PowerUp") && !isBoosting)
+    //     {
+    //         StartCoroutine(SpeedBoost());
+    //         Destroy(other.gameObject);
+    //     }
+    // }
 
-        yield return new WaitForSeconds(5f);
+    // IEnumerator SpeedBoost()
+    // {
+    //     isBoosting = true;
+    //     speed *= 2;
+    //     Debug.Log("Speed Boost Activated: " + speed);
 
-        speed /= 2;
-        Debug.Log("Speed Boost Ended: " + speed);
-        isBoosting = false;
-    }
+    //     yield return new WaitForSeconds(5f);
+
+    //     speed /= 2;
+    //     Debug.Log("Speed Boost Ended: " + speed);
+    //     isBoosting = false;
+    // }
 }
 // using System.Collections;
 // using UnityEngine;

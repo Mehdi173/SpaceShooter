@@ -16,6 +16,8 @@ public class PlayerInputBehaviour : MonoBehaviour
     private float xVelocity;
     private float yVelocity;
     private float nextShotTime;
+    private float speedMultiplier = 1f;
+    private float fireRateMultiplier = 1f;
 
     private void Awake()
     {
@@ -41,9 +43,9 @@ public class PlayerInputBehaviour : MonoBehaviour
         if (moveAction != null)
         {
             axisValue = moveAction.ReadValue<Vector2>();
-            xVelocity = axisValue.x * speed;
+            xVelocity = axisValue.x * speed * speedMultiplier;;
             newVelocity.x = xVelocity;
-            yVelocity = axisValue.y * speed;
+            yVelocity = axisValue.y * speed * speedMultiplier;
             newVelocity.y = yVelocity;
         }
 
@@ -55,7 +57,17 @@ public class PlayerInputBehaviour : MonoBehaviour
         if (shootAction != null && shootAction.IsPressed() && Time.time > nextShotTime)
         {
             Instantiate(bulletPrefab, gun.position, gun.rotation);
-            nextShotTime = Time.time + delayTime;
+            nextShotTime = Time.time + delayTime / fireRateMultiplier;
         }
+    }
+
+    public void SetSpeedMultiplier(float speedMultiplier)
+    {
+        this.speedMultiplier = speedMultiplier;
+    }
+
+    public void SetFireRateMultiplier(float fireRateMultiplier)
+    {
+        this.fireRateMultiplier = fireRateMultiplier;
     }
 }

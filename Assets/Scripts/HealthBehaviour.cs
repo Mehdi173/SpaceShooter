@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class HealthBehaviour : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
+    [SerializeField] private bool isShielded = false;
     private int currentHealth;
 
     public UnityEvent onDeath;
@@ -27,6 +28,8 @@ public class HealthBehaviour : MonoBehaviour
 
     public void AddHealth(int value)
     {
+        if (value < 0 && isShielded) return;
+
         currentHealth += value;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
         // OnHealthChange?.Invoke(currentHealth); //gonna get negative so need to think
@@ -38,10 +41,16 @@ public class HealthBehaviour : MonoBehaviour
 
     private void Kill()
     {
-        // currently using inspector for enemy disappearing, prob will also cause wave to end and the one after to start if there are no more enemies?
-        // for player maybe I will pause and show gameover UI?
+        // currently disappearing everything including player, need separation maybe for achievement of kills?
+        // but for player maybe I will also need to pause and show gameover UI?
         Debug.Log("I'm dead!");
+        // so maybe I separate the events into something like OnPlayerDeath and OnEnemyDeath??
         onDeath?.Invoke();
         gameObject.SetActive(false);
+    }
+
+    public void UpdateIsShielded(bool isShielded)
+    {
+        this.isShielded = isShielded;
     }
 }
