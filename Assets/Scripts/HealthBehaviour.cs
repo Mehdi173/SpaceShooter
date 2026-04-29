@@ -9,14 +9,15 @@ public class HealthBehaviour : MonoBehaviour
     public UnityEvent onDeath;
     // public UnityEvent<int> OnHealthChange; //public so that other objects can subscribe to it, also int or String?
 
-    private void Start()
-    {
-        InitialiseHealth();
-    }
+    // private void Start()
+    // {
+    //     InitialiseHealth();
+    // }
 
-    private void InitialiseHealth()
+    public void InitialiseHealth(int maxHealth)
     {
-        currentHealth = maxHealth;
+        this.maxHealth = maxHealth;
+        currentHealth = this.maxHealth;
         // OnHealthChange?.Invoke(currentHealth);
     }
 
@@ -33,6 +34,8 @@ public class HealthBehaviour : MonoBehaviour
 
     private void Kill()
     {
+        // currently using inspector for enemy disappearing, prob will also cause wave to end and the one after to start if there are no more enemies?
+        // for player maybe I will pause and show gameover UI?
         Debug.Log("I'm dead!");
         onDeath?.Invoke();
     }
