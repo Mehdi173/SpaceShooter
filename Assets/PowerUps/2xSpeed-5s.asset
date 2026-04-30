@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84128a2d30ebe46d2b4bdd3c30505867, type: 3}
   m_Name: 2xSpeed-5s
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
+  powerUpDisplayName: Speed x2
   type: 0
   powerUpPrefab: {fileID: 894698258782021671, guid: 6812c993e286247e1881ade6e4b5d875, type: 3}
   duration: 5

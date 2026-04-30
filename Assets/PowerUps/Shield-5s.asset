@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84128a2d30ebe46d2b4bdd3c30505867, type: 3}
   m_Name: Shield-5s
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
+  powerUpDisplayName: Shield
   type: 2
   powerUpPrefab: {fileID: 894698258782021671, guid: 0d5051c9826164975985f54bc4b25a4d, type: 3}
   duration: 5
