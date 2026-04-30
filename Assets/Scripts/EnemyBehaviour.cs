@@ -31,7 +31,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (enemyData != null && Time.time > nextShotTime)
         {
-            Instantiate(bulletPrefab, gun.position, gun.rotation);
+            // Instantiate(bulletPrefab, gun.position, gun.rotation);
+            BulletPool.Instance.SpawnBullet(gun.position, gun.rotation);
             // increasing the enemies fire rate after wave 6 to make the waves more difficult
             nextShotTime = Time.time + enemyData.firingDelayTime / difficultyMultiplier;
         }

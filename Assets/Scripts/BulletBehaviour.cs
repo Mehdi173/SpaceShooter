@@ -14,10 +14,15 @@ public class BulletBehaviour : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    // private void Start()
+    // {
+    //     // newVelocity = Vector2.up * speed;
+    //     // rb2D.linearVelocity = newVelocity;
+    //     rb2D.linearVelocity = transform.up * speed;
+    // }
+
+    public void InitialiseBullet()
     {
-        // newVelocity = Vector2.up * speed;
-        // rb2D.linearVelocity = newVelocity;
         rb2D.linearVelocity = transform.up * speed;
     }
 
@@ -26,6 +31,7 @@ public class BulletBehaviour : MonoBehaviour
         HealthBehaviour health = collision.GetComponent<HealthBehaviour>();
         if (health) health.AddHealth(-damage);
         // Debug.Log("Bullet hit!");
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
+        BulletPool.Instance.Release(this);
     }
 }
