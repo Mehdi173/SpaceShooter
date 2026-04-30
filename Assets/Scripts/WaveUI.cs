@@ -34,5 +34,12 @@ public class WaveUI : MonoBehaviour
     public void TogglePause()
     {
         // timescale change + menu?, maybe toggle doesn't work then?
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        } else
+        {
+            Time.timeScale = 0f;
+        }
     }
 }
