@@ -7,6 +7,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private EnemyData largeUnitData;
     [SerializeField] private Transform[] spawnPositions;
     [SerializeField] private PowerUpSpawner powerUpSpawner;
+    [SerializeField] private AchievementManager achievementManager;
 
     private int currentWaveIndex;
     private int enemyCount;
@@ -24,6 +25,8 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnWave()
     {
+        achievementManager.HandleWaveReached(currentWaveIndex);
+        enemiesAliveCount = enemyCount;
         for (int i = 0; i < enemyCount; i++)
         {
             // Debug.Log(i);
@@ -37,10 +40,15 @@ public class WaveManager : MonoBehaviour
             GameObject enemyObject = Instantiate(currentEnemyData.enemyPrefab, spawnPositions[i].position, spawnPositions[i].rotation);
             enemyObject.GetComponent<EnemyBehaviour>()?.setEnemyData(currentEnemyData, GetDifficultyMultiplier());
             // removing the listener that was attached to the object in the previous wave
-            enemyObject.GetComponent<HealthBehaviour>()?.onDeath.RemoveListener(OnEnemyDeath);
-            enemyObject.GetComponent<HealthBehaviour>()?.onDeath.AddListener(OnEnemyDeath);
+            HealthBehaviour healthBehaviour = enemyObject.GetComponent<HealthBehaviour>();
+            // enemyObject.GetComponent<HealthBehaviour>()?.onEnemyDeath.RemoveListener(OnEnemyDeath);
+            // enemyObject.GetComponent<HealthBehaviour>()?.onEnemyDeath.AddListener(OnEnemyDeath);
+            healthBehaviour?.onEnemyDeath.RemoveListener(OnEnemyDeath);
+            healthBehaviour?.onEnemyDeath.AddListener(OnEnemyDeath);
+
+            healthBehaviour?.onEnemyDeath.RemoveListener(achievementManager.HandleEnemyKilled);
+            healthBehaviour?.onEnemyDeath.AddListener(achievementManager.HandleEnemyKilled);
         }
-        enemiesAliveCount = enemyCount;
         powerUpSpawner.SpawnPowerUp();
     }
 
@@ -53,6 +61,8 @@ public class WaveManager : MonoBehaviour
     private void OnEnemyDeath()
     {
         enemiesAliveCount--;
+        // notify achievement maybe?
+        // achievementManager.HandleEnemyKilled();
         if (enemiesAliveCount <= 0)
         {
             // SpawnWave();

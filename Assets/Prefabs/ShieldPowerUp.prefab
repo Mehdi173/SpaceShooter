@@ -170,3 +170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpBehaviour
   powerUpData: {fileID: 11400000, guid: fa60403026be842cba73e1ae93f62003, type: 2}
+  onPowerUpCollected:
+    m_PersistentCalls:
+      m_Calls: []

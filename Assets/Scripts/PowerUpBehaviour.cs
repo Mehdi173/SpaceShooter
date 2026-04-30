@@ -1,18 +1,43 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 // [RequireComponent(typeof(PlayerPowerUpController))]
 public class PowerUpBehaviour : MonoBehaviour
 {
     [SerializeField] private PowerUpData powerUpData;
+    private AchievementManager achievementManager;
+    public UnityEvent onPowerUpCollected;
 
+    private void OnEnable()
+    {
+        achievementManager = FindObjectOfType<AchievementManager>();
+        if (achievementManager)
+        {
+            onPowerUpCollected.RemoveListener(achievementManager.HandlePowerUpCollected);
+            onPowerUpCollected.AddListener(achievementManager.HandlePowerUpCollected);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (achievementManager)
+        {
+            onPowerUpCollected.RemoveListener(achievementManager.HandlePowerUpCollected);
+        }
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerPowerUpController playerPowerUpController = collision.GetComponent<PlayerPowerUpController>();
         if (playerPowerUpController != null)
         {
             playerPowerUpController.ApplyPowerUp(powerUpData);
+            onPowerUpCollected?.Invoke();
+            // achievementManager.HandlePowerUpCollected();
             gameObject.SetActive(false); //will prob do pooling later on
         }
+
+        // maybe here if I end up adding a collider at bottom of scene, then if collides I can set inactive (if using pooling)
     }
     // public float speed = 5f;
     // // Guard added to prevent stacking of the boost

@@ -219,6 +219,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBehaviour
   maxHealth: 0
-  onDeath:
+  isShielded: 0
+  onPlayerDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnemyDeath:
     m_PersistentCalls:
       m_Calls: []
