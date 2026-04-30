@@ -11,7 +11,7 @@ public class HealthBehaviour : MonoBehaviour
     // public UnityEvent onDeath;
     public UnityEvent onPlayerDeath;
     public UnityEvent onEnemyDeath;
-    // public UnityEvent<int> OnHealthChange; //public so that other objects can subscribe to it, also int or String?, needed for health bars but do I have enough time to do that??
+    public UnityEvent<string> OnHealthChange; //public so that other objects can subscribe to it, also int or String?, needed for health bars but do I have enough time to do that??
 
     // workaround to set player health, ultimately need to make the method call from some player-related script
     private void Start()
@@ -36,6 +36,7 @@ public class HealthBehaviour : MonoBehaviour
         this.maxHealth = maxHealth;
         currentHealth = this.maxHealth;
         // OnHealthChange?.Invoke(currentHealth);
+        if (isPlayer) OnHealthChange?.Invoke(currentHealth.ToString());
     }
 
     public void AddHealth(int value)
@@ -45,6 +46,12 @@ public class HealthBehaviour : MonoBehaviour
         currentHealth += value;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
         // OnHealthChange?.Invoke(currentHealth); //gonna get negative so need to think
+        if (isPlayer)
+        {
+            // so that health does not show negative
+            currentHealth = Mathf.Max(0, currentHealth);
+            OnHealthChange?.Invoke(currentHealth.ToString());
+        }
         if (currentHealth <= 0)
         {
             Kill();
