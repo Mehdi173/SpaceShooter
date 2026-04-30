@@ -8,23 +8,29 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPositions;
     [SerializeField] private PowerUpSpawner powerUpSpawner;
     [SerializeField] private AchievementManager achievementManager;
+    [SerializeField] private WaveUI waveUI;
 
     private int currentWaveIndex;
     private int enemyCount;
     private int enemiesAliveCount;
     private EnemyData currentEnemyData;
+    private string enemyTypesString;
 
     private void Start()
     {
         enemyCount = spawnPositions.Length;
         currentWaveIndex = 1;
-        SpawnWave();
+        StartCoroutine(SpawnWaveRoutine());
     }
 
     // need to think of how to add the following waves, also need the logic to increate difficulty after
 
-    private void SpawnWave()
+    private IEnumerator SpawnWaveRoutine()
     {
+        enemyTypesString = GetEnemyTypesString();
+        waveUI.UpdateUIWaveDetails(currentWaveIndex, enemyTypesString);
+        yield return waveUI.ShowNewWaveAnnouncement(currentWaveIndex, enemyTypesString);
+
         achievementManager.HandleWaveReached(currentWaveIndex);
         enemiesAliveCount = enemyCount;
         for (int i = 0; i < enemyCount; i++)
@@ -50,6 +56,20 @@ public class WaveManager : MonoBehaviour
             healthBehaviour?.onEnemyDeath.AddListener(achievementManager.HandleEnemyKilled);
         }
         powerUpSpawner.SpawnPowerUp();
+    }
+
+    private string GetEnemyTypesString()
+    {
+        if (currentWaveIndex == 1)
+        {
+            return "Small";
+        } else if (currentWaveIndex <= enemyCount)
+        {
+            return "Small + Large";
+        } else
+        {
+            return "Large";
+        }
     }
 
     // Calculates the difficulty multiplier that gets applied after wave 6 to ensure the waves become more difficult
@@ -78,7 +98,8 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         
         currentWaveIndex++;
-        SpawnWave();
+        // SpawnWave();
+        StartCoroutine(SpawnWaveRoutine());
     }
         // [SerializeField] private EnemyData[] waveData;
         // [SerializeField] private Transform[] spawnPoints;
