@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class AchievementManager : MonoBehaviour
 {
     [SerializeField] private AchievementData[] allAchievements;
+    [SerializeField] private GameObject achievementPanel;
+    [SerializeField] private TMP_Text achievementText;
     private Queue<AchievementData> achievementQueue = new Queue<AchievementData>();
     private HashSet<AchievementData> alreadyUnlockedAchievements = new HashSet<AchievementData>();
     private bool isProcessingQueue = false;
@@ -75,9 +78,14 @@ public class AchievementManager : MonoBehaviour
         isProcessingQueue = true;
         while (achievementQueue.Count > 0)
         {
+            // UnlockAchievement(achievementQueue.Dequeue());
+            // // time in between (UI sutff happens before)
+            // yield return new WaitForSeconds(3f);
             UnlockAchievement(achievementQueue.Dequeue());
             // time in between (UI sutff happens before)
             yield return new WaitForSeconds(3f);
+            achievementPanel.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
         }
         isProcessingQueue = false;
         // while (true)
@@ -94,6 +102,8 @@ public class AchievementManager : MonoBehaviour
 
     private void UnlockAchievement(AchievementData achievement)
     {
+        achievementText.text = "Achievement '" + achievement.achievementName + "' unlocked!";
+        achievementPanel.SetActive(true);
         Debug.Log("Achievement unlocked");
         // UI stuff to show it
     }
