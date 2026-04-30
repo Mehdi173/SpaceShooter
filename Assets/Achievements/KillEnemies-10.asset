@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757ef4f360ae044fb89a76c5dbbc13e0, type: 3}
   m_Name: KillEnemies-10
   m_EditorClassIdentifier: Assembly-CSharp::AchievementData
-  achievementName: 
+  achievementName: Kill 10 enemies
   type: 0
-  targetValue: 0
+  targetValue: 10

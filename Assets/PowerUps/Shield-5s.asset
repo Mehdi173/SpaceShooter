@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
   type: 2
   powerUpPrefab: {fileID: 894698258782021671, guid: 0d5051c9826164975985f54bc4b25a4d, type: 3}
-  duration: 0
+  duration: 5
   multiplier: 0

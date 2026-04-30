@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 2xSpeed-5s
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
   type: 0
-  powerUpPrefab: {fileID: 0}
-  duration: 0
-  multiplier: 0
+  powerUpPrefab: {fileID: 894698258782021671, guid: 6812c993e286247e1881ade6e4b5d875, type: 3}
+  duration: 5
+  multiplier: 2

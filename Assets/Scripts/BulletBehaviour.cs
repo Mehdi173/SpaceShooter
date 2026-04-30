@@ -28,10 +28,19 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // HealthBehaviour health = collision.GetComponent<HealthBehaviour>();
+        // if (health) health.AddHealth(-damage);
+        // // Debug.Log("Bullet hit!");
+        // // gameObject.SetActive(false);
+        // BulletPool.Instance.Release(this);
         HealthBehaviour health = collision.GetComponent<HealthBehaviour>();
-        if (health) health.AddHealth(-damage);
+        if (health)
+        {
+            health.AddHealth(-damage);
+            BulletPool.Instance.Release(this);
+        }
         // Debug.Log("Bullet hit!");
         // gameObject.SetActive(false);
-        BulletPool.Instance.Release(this);
+        // BulletPool.Instance.Release(this);
     }
 }

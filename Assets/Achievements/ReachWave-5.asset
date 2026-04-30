@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757ef4f360ae044fb89a76c5dbbc13e0, type: 3}
   m_Name: ReachWave-5
   m_EditorClassIdentifier: Assembly-CSharp::AchievementData
-  achievementName: 
-  type: 0
-  targetValue: 0
+  achievementName: Reach wave 5
+  type: 1
+  targetValue: 5

@@ -19,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
         healthBehaviour = GetComponent<HealthBehaviour>();
     }
 
-    public void setEnemyData(EnemyData enemyData, float difficultyMultiplier)
+    public void SetEnemyData(EnemyData enemyData, float difficultyMultiplier)
     {
         this.enemyData = enemyData;
         this.difficultyMultiplier = difficultyMultiplier;

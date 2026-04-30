@@ -38,7 +38,7 @@ public class WaveManager : MonoBehaviour
                 currentEnemyData = largeUnitData;
             }
             GameObject enemyObject = Instantiate(currentEnemyData.enemyPrefab, spawnPositions[i].position, spawnPositions[i].rotation);
-            enemyObject.GetComponent<EnemyBehaviour>()?.setEnemyData(currentEnemyData, GetDifficultyMultiplier());
+            enemyObject.GetComponent<EnemyBehaviour>()?.SetEnemyData(currentEnemyData, GetDifficultyMultiplier());
             // removing the listener that was attached to the object in the previous wave
             HealthBehaviour healthBehaviour = enemyObject.GetComponent<HealthBehaviour>();
             // enemyObject.GetComponent<HealthBehaviour>()?.onEnemyDeath.RemoveListener(OnEnemyDeath);
@@ -102,7 +102,7 @@ public class WaveManager : MonoBehaviour
         //             EnemyBehaviour enemyBehaviour = enemy.GetComponent<EnemyBehaviour>();
         //             if (enemyBehaviour != null)
         //             {
-        //                 enemyBehaviour.setEnemyData(currentWave);
+        //                 enemyBehaviour.SetEnemyData(currentWave);
         //             }
         //         }
         //     }
