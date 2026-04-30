@@ -9,6 +9,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private PowerUpSpawner powerUpSpawner;
     [SerializeField] private AchievementManager achievementManager;
     [SerializeField] private WaveUI waveUI;
+    [SerializeField] private SFXPlayer sfxPlayer;
+    [SerializeField] private AudioClip deathExplosionClip;
 
     private int currentWaveIndex;
     private int enemyCount;
@@ -80,6 +82,8 @@ public class WaveManager : MonoBehaviour
 
     private void OnEnemyDeath()
     {
+        sfxPlayer.PlaySound(deathExplosionClip);
+        
         enemiesAliveCount--;
         // notify achievement maybe?
         // achievementManager.HandleEnemyKilled();
