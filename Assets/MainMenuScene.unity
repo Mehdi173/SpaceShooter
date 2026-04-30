@@ -639,7 +639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.65}
   m_AnchorMax: {x: 0.5, y: 0.65}
-  m_AnchoredPosition: {x: 30, y: 0}
+  m_AnchoredPosition: {x: 30, y: 110}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162037638
@@ -662,7 +662,56 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credits text
+  m_text: 'SPRITES
+
+    Player, Small & Large Enemies, Bullet, Shield:
+
+    https://anim86.itch.io/space-shoter-starter-pack
+
+
+    Power-Up
+    Icons (Speed Boost, Fire Rate, Shield):
+
+    Generated using ChatGPT AI Image
+    Generator
+
+
+
+    SOUND EFFECTS
+
+    Bullet Shot:
+
+    https://pixabay.com/sound-effects/film-special-effects-sci-fi-energy-gun-39409/
+
+
+    Game
+    Over:
+
+    https://pixabay.com/sound-effects/musical-game-over-417465/
+
+
+    Wave
+    Alert (trimmed):
+
+    https://pixabay.com/sound-effects/film-special-effects-enemy-detected-103347/
+
+
+    Explosion
+    (Player & Enemy Death):
+
+    https://pixabay.com/sound-effects/film-special-effects-explosion-91872/
+
+
+    Power-Up
+    Collected:
+
+    https://pixabay.com/sound-effects/film-special-effects-power-up-grab-88510/
+
+
+    Power-Up
+    Expired:
+
+    https://pixabay.com/sound-effects/power-outage-451574/'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -689,8 +738,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2399,7 +2448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -90}
+  m_AnchoredPosition: {x: 0, y: -270}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1568328534
@@ -2647,7 +2696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.65}
   m_AnchorMax: {x: 0.5, y: 0.65}
-  m_AnchoredPosition: {x: 120, y: 80}
+  m_AnchoredPosition: {x: 120, y: 180}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1699215574
@@ -2925,7 +2974,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 550, y: 450}
+  m_SizeDelta: {x: 550, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741505776
 MonoBehaviour:
