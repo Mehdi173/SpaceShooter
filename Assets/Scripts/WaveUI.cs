@@ -27,7 +27,7 @@ public class WaveUI : MonoBehaviour
         newWaveAnnouncementPanelText.text = "Wave " + newWaveNumber + " incoming!\n\nType of enemies: " + enemyTypes;
         // newWaveAnnouncementPanelText.SetText("Wave {0} incoming...\nType of enemies: {1}", newWaveNumber, enemyTypes);
         newWaveAnnouncementPanel.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         newWaveAnnouncementPanel.SetActive(false);
     }
 

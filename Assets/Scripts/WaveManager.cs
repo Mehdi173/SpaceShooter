@@ -11,6 +11,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private WaveUI waveUI;
     [SerializeField] private SFXPlayer sfxPlayer;
     [SerializeField] private AudioClip deathExplosionClip;
+    [SerializeField] private AudioClip newWaveAlertClip;
 
     private int currentWaveIndex;
     private int enemyCount;
@@ -31,6 +32,7 @@ public class WaveManager : MonoBehaviour
     {
         enemyTypesString = GetEnemyTypesString();
         waveUI.UpdateUIWaveDetails(currentWaveIndex, enemyTypesString);
+        sfxPlayer.PlaySound(newWaveAlertClip);
         yield return waveUI.ShowNewWaveAnnouncement(currentWaveIndex, enemyTypesString);
 
         achievementManager.HandleWaveReached(currentWaveIndex);
