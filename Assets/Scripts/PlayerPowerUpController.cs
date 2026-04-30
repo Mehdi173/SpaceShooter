@@ -7,6 +7,9 @@ public class PlayerPowerUpController : MonoBehaviour
 {
     [SerializeField] private GameObject shieldObject;
     [SerializeField] private PowerUpUI powerUpUI;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip powerUpCollectClip;
+    [SerializeField] private AudioClip powerUpExpireClip;
 
     private PlayerInputBehaviour playerInputBehaviour;
     private HealthBehaviour healthBehaviour;
@@ -19,6 +22,7 @@ public class PlayerPowerUpController : MonoBehaviour
 
     public void ApplyPowerUp(PowerUpData powerUpData)
     {
+        audioSource.PlayOneShot(powerUpCollectClip);
         switch(powerUpData.type)
         {
             case PowerUpType.SpeedBoost:
@@ -47,6 +51,7 @@ public class PlayerPowerUpController : MonoBehaviour
             yield return null;
         }
         playerInputBehaviour.SetSpeedMultiplier(1f);
+        audioSource.PlayOneShot(powerUpExpireClip);
         powerUpUI.ClearPowerUpStatus();
     }
 
@@ -64,6 +69,7 @@ public class PlayerPowerUpController : MonoBehaviour
             yield return null;
         }
         playerInputBehaviour.SetFireRateMultiplier(1f);
+        audioSource.PlayOneShot(powerUpExpireClip);
         powerUpUI.ClearPowerUpStatus();
     }
 
@@ -87,6 +93,7 @@ public class PlayerPowerUpController : MonoBehaviour
 
         healthBehaviour.UpdateIsShielded(false);
         shieldObject.SetActive(false);
+        audioSource.PlayOneShot(powerUpExpireClip);
         powerUpUI.ClearPowerUpStatus();
     }
 }

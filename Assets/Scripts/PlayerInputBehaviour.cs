@@ -7,6 +7,8 @@ public class PlayerInputBehaviour : MonoBehaviour
     [SerializeField] private Transform gun;
     [SerializeField] private BulletBehaviour bulletPrefab;
     [SerializeField] private float delayTime;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSoundClip;
     
     private InputAction moveAction;
     private InputAction shootAction;
@@ -58,6 +60,7 @@ public class PlayerInputBehaviour : MonoBehaviour
         {
             // Instantiate(bulletPrefab, gun.position, gun.rotation);
             BulletPool.Instance.SpawnBullet(gun.position, gun.rotation);
+            audioSource.PlayOneShot(shootSoundClip);
             nextShotTime = Time.time + delayTime / fireRateMultiplier;
         }
     }
