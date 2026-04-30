@@ -10,6 +10,7 @@ public enum PowerUpType
 [CreateAssetMenu(fileName = "PowerUpData", menuName = "Scriptable Objects/PowerUpData")]
 public class PowerUpData : ScriptableObject
 {
+    public string powerUpDisplayName;
     public PowerUpType type;
     public GameObject powerUpPrefab;
     public float duration;
