@@ -15,9 +15,6 @@ public class AchievementManager : MonoBehaviour
     private int powerUpsCollected = 0;
     private AchievementData currentAchievement;
 
-    // method for when achievement completes/unlocks
-    // achievementQueue.enqueue(x);
-
     
     public void TestMethod()
     {
@@ -32,7 +29,6 @@ public class AchievementManager : MonoBehaviour
 
     public void HandleWaveReached(int currentWaveIndex)
     {
-        Debug.Log("HandleWaveReached called");
         CheckAchievements(AchievementType.ReachWave, currentWaveIndex);
     }
 
@@ -41,11 +37,6 @@ public class AchievementManager : MonoBehaviour
         powerUpsCollected++;
         CheckAchievements(AchievementType.CollectPowerUps, powerUpsCollected);
     }
-
-    // private void Start()
-    // {
-    //     StartCoroutine(ProcessAchievementQueue());
-    // }
 
     private void CheckAchievements(AchievementType achievementType, int currentValue)
     {
@@ -56,7 +47,6 @@ public class AchievementManager : MonoBehaviour
             {
                 if (currentValue >= currentAchievement.targetValue)
                 {
-                    // UnlockAchievement(allAchievements[i]);
                     alreadyUnlockedAchievements.Add(currentAchievement);
                     achievementQueue.Enqueue(currentAchievement);
 
@@ -71,16 +61,9 @@ public class AchievementManager : MonoBehaviour
 
     private IEnumerator ProcessAchievementQueue()
     {
-        // isShowingAchievement = true;
-        // // code to show achievement (e.g. UI animation)
-        // yield return new WaitForSeconds(2f); // wait for 2 seconds before showing next achievement
-        // isShowingAchievement = false;
         isProcessingQueue = true;
         while (achievementQueue.Count > 0)
         {
-            // UnlockAchievement(achievementQueue.Dequeue());
-            // // time in between (UI sutff happens before)
-            // yield return new WaitForSeconds(3f);
             UnlockAchievement(achievementQueue.Dequeue());
             // time in between (UI sutff happens before)
             yield return new WaitForSeconds(3f);
@@ -88,23 +71,11 @@ public class AchievementManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
         }
         isProcessingQueue = false;
-        // while (true)
-        // {
-        //     if (achievementQueue.Count > 0) UnlockAchievement(achievementQueue.Dequeue());
-        //     yield return new WaitForSeconds(5f);
-        // }
-        // for(; ;)
-        // {
-        //     if (achievementQueue.Count > 0) UnlockAchievement(achievementQueue.Dequeue());
-        //     yield return new WaitForSeconds(5f);
-        // }
     }
 
     private void UnlockAchievement(AchievementData achievement)
     {
         achievementText.text = "Achievement '" + achievement.achievementName + "' unlocked!";
         achievementPanel.SetActive(true);
-        Debug.Log("Achievement unlocked");
-        // UI stuff to show it
     }
 }

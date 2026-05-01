@@ -11,8 +11,6 @@ public class WaveUI : MonoBehaviour
 
     public void UpdateUIWaveDetails(int currentWaveIndex, string enemyTypes)
     {
-        // waveText = "Wave: " + currentWaveIndex;
-        // waveText.SetText("Wave: " + currentWaveIndex);
         waveText.SetText("Wave {0}", currentWaveIndex);
         enemyTypesText.text = "Enemies: " + enemyTypes;
     }
@@ -25,7 +23,6 @@ public class WaveUI : MonoBehaviour
     private IEnumerator HandleNewWaveAnnouncement(int newWaveNumber, string enemyTypes)
     {
         newWaveAnnouncementPanelText.text = "Wave " + newWaveNumber + " incoming!\n\nType of enemies: " + enemyTypes;
-        // newWaveAnnouncementPanelText.SetText("Wave {0} incoming...\nType of enemies: {1}", newWaveNumber, enemyTypes);
         newWaveAnnouncementPanel.SetActive(true);
         yield return new WaitForSeconds(3f);
         newWaveAnnouncementPanel.SetActive(false);
@@ -33,7 +30,6 @@ public class WaveUI : MonoBehaviour
 
     public void TogglePause()
     {
-        // timescale change + menu?, maybe toggle doesn't work then?
         if (Time.timeScale == 0f)
         {
             Time.timeScale = 1f;

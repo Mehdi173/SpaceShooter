@@ -58,7 +58,6 @@ public class PlayerInputBehaviour : MonoBehaviour
     {
         if (shootAction != null && shootAction.IsPressed() && Time.time > nextShotTime)
         {
-            // Instantiate(bulletPrefab, gun.position, gun.rotation);
             BulletPool.Instance.SpawnBullet(gun.position, gun.rotation);
             audioSource.PlayOneShot(shootSoundClip);
             nextShotTime = Time.time + delayTime / fireRateMultiplier;

@@ -12,7 +12,6 @@ public class PowerUpUI : MonoBehaviour
 
     public void UpdatePowerUpStatus(string powerUpDisplayName, float remainingTime)
     {
-        // powerUpStatusText.SetText("Power-Up: {0} {1:0.0}s", powerUpDisplayName, remainingTime);
         powerUpStatusText.text = $"Power-Up: {powerUpDisplayName} {remainingTime:0.0}s";
     }
 }
