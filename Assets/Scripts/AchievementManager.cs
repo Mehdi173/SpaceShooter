@@ -65,7 +65,6 @@ public class AchievementManager : MonoBehaviour
         while (achievementQueue.Count > 0)
         {
             UnlockAchievement(achievementQueue.Dequeue());
-            // time in between (UI sutff happens before)
             yield return new WaitForSeconds(3f);
             achievementPanel.SetActive(false);
             yield return new WaitForSeconds(1.5f);
